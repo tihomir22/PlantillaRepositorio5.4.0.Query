@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class name="model.Alumno" table="alumno">
+        <id name="id" type="integer">
+            <column name="Id" />
+        </id>
+        <property name="nombre" column="Nombre" type="string"></property>
+        <property name="sueldo" column="Sueldo" type="float"></property>
+        <property name="registrado" column="Registrado" type="yes_no"></property>
+        <property name="fechanacimiento" column="FechaNac" type="date"></property>
+        <property name="horatutoria" column="HoraTutoria" type="time"></property>
+        <property name="fecharegistro" column="FechaRegistro" type="timestamp"></property>
+        <property name="observaciones" column="Observaciones" type="string"></property>
+    </class>
+</hibernate-mapping>
