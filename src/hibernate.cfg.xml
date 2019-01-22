@@ -9,5 +9,6 @@
     <property name="dialect">org.hibernate.dialect.MySQL5Dialect</property>
     <property name="hibernate.show_sql">true</property>
     <mapping resource="controller/Alumno.hbm.xml"/>
+    <mapping resource="controller/Profesor.hbm.xml"/>
   </session-factory>
 </hibernate-configuration>
