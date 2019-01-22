@@ -15,21 +15,16 @@ import java.util.Set;
 public class Profesor implements Serializable {
 
     private int id;
-    private String nombre;
-    private String ape1;
-    private String ape2;
-  
+    private Nombre nombre;
+    private TipoFuncionario tipoFuncionario;
 
     public Profesor() {
     }
 
-    public Profesor(String nombre, String ape1, String ape2) {
+    public Profesor(Nombre nombre, TipoFuncionario tipo) {
         this.nombre = nombre;
-        this.ape1 = ape1;
-        this.ape2 = ape2;
+        this.tipoFuncionario = tipo;
     }
-
-  
 
     public int getId() {
         return id;
@@ -39,28 +34,20 @@ public class Profesor implements Serializable {
         this.id = id;
     }
 
-    public String getNombre() {
+    public TipoFuncionario getTipoFuncionario() {
+        return tipoFuncionario;
+    }
+
+    public void setTipoFuncionario(TipoFuncionario tipoFuncionario) {
+        this.tipoFuncionario = tipoFuncionario;
+    }
+
+    public Nombre getNombre() {
         return nombre;
     }
 
-    public void setNombre(String nombre) {
+    public void setNombre(Nombre nombre) {
         this.nombre = nombre;
-    }
-
-    public String getApe1() {
-        return ape1;
-    }
-
-    public void setApe1(String ape1) {
-        this.ape1 = ape1;
-    }
-
-    public String getApe2() {
-        return ape2;
-    }
-
-    public void setApe2(String ape2) {
-        this.ape2 = ape2;
     }
 
 }
