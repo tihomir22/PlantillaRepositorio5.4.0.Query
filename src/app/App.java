@@ -6,10 +6,10 @@
 package app;
 
 import java.util.Calendar;
+import java.util.List;
 import model.Alumno;
-import model.Nombre;
 import model.Profesor;
-import model.TipoFuncionario;
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
@@ -24,27 +24,29 @@ public class App {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        //CREAMOS CONEXION
-        //SessionFactory sessionFactory;
-        //Configuration configuration = new Configuration();
-        //configuration.configure();
-        //sessionFactory = configuration.buildSessionFactory();
+
         SessionFactory factory = new Configuration().configure().buildSessionFactory();
-        Alumno alum1 = new Alumno(1, "Tihomir", (float) 2000, false, Calendar.getInstance().getTime(), Calendar.getInstance().getTime(), Calendar.getInstance().getTime(), "es mala persona");
-        Profesor prof1 = new Profesor(new Nombre("Maite", "Chirivella", "Mira mi huevo"),TipoFuncionario.Practicas);
-
-// CREAMOS UN OBJETO
-        //Profesor profesor=new Profesor(7,"Pepe","Garcia","Perez");
-        //CREAR UNA SESION
         Session session = factory.openSession();
-        session.beginTransaction();
+        Query query = session.createQuery("SELECT p FROM Profesor p");
+        List<Profesor> profesores = query.list();
 
-        //GUARDAR OBJETO
-        session.saveOrUpdate(alum1);
-        session.save(prof1);
+        for (int i = 0; i < profesores.size(); i++) {
+            System.out.println(profesores.get(i));
+        }
 
-        //CERRAR CONEXION
-        session.getTransaction().commit();
+        query = session.createQuery("SELECT p.id,p.nombre FROM Profesor p");
+        List<Object[]> arrayObjetos = query.list();
+
+        for (int i = 0; i < arrayObjetos.size(); i++) {
+            System.out.println(arrayObjetos.get(i)[0] + " " + arrayObjetos.get(i)[1]);
+        }
+
+        query = session.createQuery("SELECT p.nombre FROM Profesor p");
+        List<Object>arrayObjects=query.list();
+        for (int i = 0; i < arrayObjects.size(); i++) {
+            System.out.println(arrayObjects.get(i));
+        }
+        
         session.close();
         factory.close();
 

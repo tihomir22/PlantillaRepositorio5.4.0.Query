@@ -3,22 +3,11 @@
 
 <hibernate-mapping>
     <class name="model.Profesor" table="profesor">
-        <id column="Id" name="id" type="integer">
-            <generator class="identity"/>
-        </id>
-        <component name="nombre">
-            <property name="nombre"></property>
-            <property name="ape1"></property>
-            <property name="ape2"></property>
-        </component>
-           
-        <property name="tipoFuncionario">
-            <type name="org.hibernate.type.EnumType">
-                <param name="enumClass">model.TipoFuncionario</param>
-                <param name="type">12</param>
-            </type>
-        </property>
-        
-
+        <id column="Id" name="id" type="integer"></id>
+        <property name="nombre"></property>
+        <property name="ape1"></property>
+        <property name="ape2"></property>
+    
+      
     </class>
 </hibernate-mapping>
