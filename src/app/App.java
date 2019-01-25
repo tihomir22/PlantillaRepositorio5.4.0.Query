@@ -42,10 +42,45 @@ public class App {
         }
 
         query = session.createQuery("SELECT p.nombre FROM Profesor p");
-        List<Object>arrayObjects=query.list();
+        List<Object> arrayObjects = query.list();
         for (int i = 0; i < arrayObjects.size(); i++) {
             System.out.println(arrayObjects.get(i));
         }
+
+        //Unique result
+        Profesor profesor = (Profesor) session.createQuery("SELECT p FROM Profesor p WHERE p.id=2").uniqueResult();
+        System.out.println("Unico " + profesor);
+
+        //Paginación
+        int tamanyoPagina = 2;
+        int paginaAMostrar = 1;
+        query = session.createQuery("SELECT p FROM Profesor p Order By p.id");
+        query.setMaxResults(tamanyoPagina);
+        query.setFirstResult(paginaAMostrar);
+        List<Object> arrayProfesores = query.list();
+        for (int i = 0; i < arrayProfesores.size(); i++) {
+            System.out.println(arrayProfesores.get(i));
+        }
+        //Consulta con nombres
+        query = session.getNamedQuery("findAllProfesores");
+        profesores = query.list();
+        for (int i = 0; i < profesores.size(); i++) {
+            System.out.println(profesores.get(i));
+        }
+        
+        //Query con ?
+        String nombre="Maite";
+        String ape1="Chirivella";
+        String ape2="Hola";
+        query=session.createQuery("SELECT p FROM Profesor p WHERE nombre=? AND ape1=? AND ape2=?");
+        query.setString(0, nombre);
+        query.setString(1, ape1);
+        query.setString(2, ape2);
+        profesores=query.list();
+        for (int i = 0; i < profesores.size(); i++) {
+            System.out.println(profesores.get(i));
+        }
+        
         
         session.close();
         factory.close();
